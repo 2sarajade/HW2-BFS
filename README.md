@@ -1,4 +1,4 @@
-![](https://github.com/2sarajade/HW2-BFS/workflows/Project%20Tests/badge.svg)
+![BuildStatus](https://github.com/2sarajade/HW2-BFS/actions/workflows/test.yml/badge.svg?event=push)
 # Assignment 2
 Breadth-first search
 
