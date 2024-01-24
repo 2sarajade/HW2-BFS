@@ -21,7 +21,31 @@ class Graph:
         * If there is an end node input and a path does not exist, return None
 
         """
-        return
+        # check for errors
+        if not self.graph:
+            raise ValueError("graph is empty")
+        if not start or start not in self.graph:
+            raise ValueError("invalid start")
+
+        # transverse the graph
+        visited = []
+        q = []
+        q.append((start, None))
+
+        while not q.empty():
+            current_node = q.pop(0)
+            if current_node[0] == end:
+                return [current_node[0]].append(end[1])
+            for successor in self.graph.successors(current_node):
+                if successor not in visited:
+                    q.append((successor, [current_node[0]].append(current_node[1])))
+        
+        # end is not accessable from start
+        if end:
+            return None
+        
+        # end is none, returning nodes transversed
+        return visited
 
 
 
