@@ -26,6 +26,8 @@ class Graph:
             raise ValueError("graph is empty")
         if not start or start not in self.graph:
             raise ValueError("invalid start")
+        if end and end not in self.graph:
+            raise ValueError("invalid end")
 
         # transverse the graph
         # setup the queue

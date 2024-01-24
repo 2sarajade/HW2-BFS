@@ -42,6 +42,9 @@ def test_bfs():
         bad_start = citation_network.bfs("Sara Smith")
     assert str(err.value) == "invalid start"
     with pytest.raises(ValueError) as err:
+        bad_end = citation_network.bfs("34916529", "Sara Smith")
+    assert str(err.value) == "invalid end"
+    with pytest.raises(ValueError) as err:
         empty = empty_network.bfs("Reza Abbasi-Asl")
     assert str(err.value) == "graph is empty"
 
