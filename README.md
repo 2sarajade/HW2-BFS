@@ -1,5 +1,9 @@
+[BuildStatus] (https://github.com/2sarajade/HW2-BFS/workflows/HW2-BFS/badge.svg?event=push)
 # Assignment 2
 Breadth-first search
+
+# Method description
+This method finds the shortest paths between nodes of a netowrk with breadth first search. Nodes are added to a FIFO queue. As each node is visited, it's children are added to the back of the queue if they haven't already been already visited. If an end node is specified, it will stop when it reaches the end and return the shortest path to the end node. If no end is specified, the method will return a BFS transversal of the graph.
 
 # Assignment Overview
 The purpose of this assignment is to get you comfortable working with graph structures and to implement a breadth-first search function to traverse the graph and find the shortest path between nodes.
