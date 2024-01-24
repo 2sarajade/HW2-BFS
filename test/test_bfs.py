@@ -20,6 +20,7 @@ def test_bfs_traversal():
     assert len(set(bfs_result)) == 30
     # check transversal vs the networkx package
     assert bfs_result == truth
+    #errors are tested in test_bfs()
 
 def test_bfs():
     """
@@ -32,4 +33,22 @@ def test_bfs():
     Include an additional test for nodes that are not connected 
     which should return None. 
     """
-    pass
+    citation_network = Graph("data/citation_network.adjlist")
+    empty_network = Graph("test/empty_network.adjlist")
+
+    #citation_network.bfs("Sara Smith")
+    # test errors
+    with pytest.raises(ValueError) as err:
+        bad_start = citation_network.bfs("Sara Smith")
+    assert str(err.value) == "invalid start"
+    with pytest.raises(ValueError) as err:
+        empty = empty_network.bfs("Reza Abbasi-Asl")
+    assert str(err.value) == "graph is empty"
+
+    #test bfs behavior
+    bfs_path = citation_network.bfs("Nadav Ahituv", "Yin Shen")
+    correct_path = nx.shortest_path(citation_network.graph, source = "Nadav Ahituv", target = "Yin Shen")
+    assert bfs_path == correct_path
+
+    bfs_path_none = citation_network.bfs("Reza Abbasi-Asl", "Ryan Corces")
+    assert bfs_path_none == None
