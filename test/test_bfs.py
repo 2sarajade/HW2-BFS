@@ -1,6 +1,7 @@
 # write tests for bfs
 import pytest
 from search.graph import Graph
+import networkx as nx
 
 def test_bfs_traversal():
     """
@@ -11,9 +12,14 @@ def test_bfs_traversal():
     the right number of nodes, in the right order, etc.)
     """
     tiny_network = Graph("data/tiny_network.adjlist")
-    bfs_result = tiny_network.bfs("31806696")
-    print(bfs_result)
-    assert False
+    start = "Luke Gilbert"
+    bfs_result = tiny_network.bfs(start)
+    truth = list(nx.bfs_tree(tiny_network.graph, source = start))
+    # test that all nodes are visited only once
+    assert len(bfs_result) == 30
+    assert len(set(bfs_result)) == 30
+    # check transversal vs the networkx package
+    assert bfs_result == truth
 
 def test_bfs():
     """

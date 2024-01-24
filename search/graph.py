@@ -28,17 +28,24 @@ class Graph:
             raise ValueError("invalid start")
 
         # transverse the graph
+        # setup the queue
         visited = []
         q = []
-        q.append((start, None))
+        paths = {}
+        # start
+        q.append(start)
+        paths[start] = [start]
 
-        while not q.empty():
+        while not len(q) == 0:
             current_node = q.pop(0)
-            if current_node[0] == end:
-                return [current_node[0]].append(end[1])
-            for successor in self.graph.successors(current_node):
-                if successor not in visited:
-                    q.append((successor, [current_node[0]].append(current_node[1])))
+            visited.append(current_node)
+            
+            if current_node == end:
+                return paths[current_node]
+            for successor in self.graph.neighbors(current_node):
+                if successor not in visited and successor not in q:
+                    q.append(successor)
+                    paths[successor] = paths[current_node] + [successor]
         
         # end is not accessable from start
         if end:
