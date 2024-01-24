@@ -10,7 +10,7 @@ def test_bfs_traversal():
     that all nodes are being traversed (ie. returns 
     the right number of nodes, in the right order, etc.)
     """
-    tiny_network = graph.Graph("data/tiny_network.adjlist")
+    tiny_network = Graph("data/tiny_network.adjlist")
     bfs_result = tiny_network.bfs("31806696")
     print(bfs_result)
     assert False
